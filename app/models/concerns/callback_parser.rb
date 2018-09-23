@@ -8,7 +8,5 @@ class CallbackParser
     rescue
       TelegramClient.send_message(user.telegram_id,"Calm down please")
     end
-
-    user.intro_answer(eval(callback[:data]))
   end
 end

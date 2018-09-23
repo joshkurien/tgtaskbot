@@ -12,11 +12,11 @@ class CallParser
 
   private
   def self.start(chat)
-    TelegramClient.send_message(chat,
-                                (Response.get_random_text(Response.keys[:welcome])))
+    SendMessageJob.perform_async(chat,
+                                 (Response.get_random_text(Response.keys[:welcome])))
   end
 
   def self.default_response(chat)
-    TelegramClient.send_message(chat,Response.get_random_text(Response.keys[:spam]))
+    SendMessageJob.perform_async(chat, Response.get_random_text(Response.keys[:spam]))
   end
 end
