@@ -1,9 +1,18 @@
 language: ruby
 rvm:
-  - "2.5.1"
+- 2.5.1
 env:
-  - DB=postgresql
+- DB=postgresql
 script:
-  - RAILS_ENV=test bundle exec rake db:create db:migrate --trace
-  - bundle exec rspec
-bundler_args: --binstubs=./bundler_stubs
+- RAILS_ENV=test bundle exec rake db:create db:migrate --trace
+- bundle exec rspec
+bundler_args: "--binstubs=./bundler_stubs"
+deploy:
+  provider: gae
+  keyfile: task_bot.json
+  project: tg-task-bot
+  on:
+    all_branches: true
+before_install:
+- openssl aes-256-cbc -K $encrypted_2e751f47f8c2_key -iv $encrypted_2e751f47f8c2_iv
+  -in task_bot.json.enc -out task_bot.json -d
