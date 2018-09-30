@@ -16,3 +16,5 @@ deploy:
 before_install:
 - openssl aes-256-cbc -K $encrypted_2e751f47f8c2_key -iv $encrypted_2e751f47f8c2_iv
   -in task_bot.json.enc -out task_bot.json -d
+- openssl aes-256-cbc -K $encrypted_2e751f47f8c2_key -iv $encrypted_2e751f47f8c2_iv
+  -in app.yaml.enc -out app.yaml -d
